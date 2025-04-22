@@ -35,14 +35,15 @@ class MainViewModel @Inject constructor(
         resultMessage = null
         userInput = ""
         isChecking = false
+
     }
 
     fun onCheck() {
         if (isChecking) return
         isChecking = true
 
-        val expected = ExpressionBuilder(problemText).build().evaluate()
-        val input = userInput.toDoubleOrNull()
+        val expected = ExpressionBuilder(problemText.replace('–', '-')).build().evaluate()
+        val input = userInput.replace('–', '-').toDoubleOrNull()
         val epsilon = 0.0001
 
         if (input != null && abs(input - expected) < epsilon) {
@@ -62,5 +63,10 @@ class MainViewModel @Inject constructor(
         if (isChecking) return
         if (key == "DEL") userInput = userInput.dropLast(1)
         else userInput += key
+    }
+
+    fun onDifficultyChange(newDifficulty: Int) {
+        difficulty = newDifficulty
+        loadNewProblem()
     }
 }

@@ -44,6 +44,7 @@ android {
 dependencies {
     // Compose
     implementation(libs.ui)
+    implementation(libs.material)
     implementation(libs.material3)
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
@@ -62,6 +63,7 @@ dependencies {
     // exp4j
     implementation(libs.exp4j)
 
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
