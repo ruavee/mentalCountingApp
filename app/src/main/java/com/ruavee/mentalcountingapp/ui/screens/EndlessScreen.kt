@@ -3,14 +3,21 @@
 package com.ruavee.mentalcountingapp.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
-import androidx.compose.ui.Alignment.Companion.TopEnd
+import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -31,7 +38,7 @@ import com.ruavee.mentalcountingapp.ui.theme.*
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel(),
-    onNavigateToTimer: () -> Unit
+    onNavigateBack: () -> Unit
 ) {
     val problem = viewModel.problemText
     val message = viewModel.resultMessage
@@ -39,6 +46,36 @@ fun MainScreen(
     val input = viewModel.userInput
     val isChecking = viewModel.isChecking
     val difficultyState = rememberSaveable { mutableFloatStateOf(1f) }
+    var showInfo by remember { mutableStateOf(false) }
+
+    if (showInfo) {
+        AlertDialog(
+            onDismissRequest = { showInfo = false },
+            confirmButton = {
+                TextButton(onClick = { showInfo = false }) {
+                    Text(
+                        text = "Ок",
+                        fontFamily = FontFamily(Font(R.font.cmunrm)),
+                        fontSize = 16.sp
+                    )
+                }
+            },
+            text = {
+                Text(
+                    text = """
+                              Числа по модулю не превышают:
+                              
+                              - Лёгкий: 10
+                              - Средний: 100
+                              - Трудный: 1000
+                            """
+                        .trimIndent(),
+                    fontFamily = FontFamily(Font(R.font.cmunrm)),
+                    fontSize = 18.sp
+                    )
+            },
+        )
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -49,26 +86,28 @@ fun MainScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 30.dp),
+                .padding(vertical = 10.dp),
         ) {
             Button(
                 modifier = Modifier
-                    .align(TopEnd)
+                    .align(TopStart)
                     .wrapContentSize(),
-                onClick = onNavigateToTimer,
+                onClick = onNavigateBack,
                 shape = RoundedCornerShape(7.dp),
                 contentPadding = PaddingValues(vertical = 3.dp, horizontal = 15.dp)
             ) {
                 Text(
-                    text = stringResource(id = R.string.switchTimerMode),
+                    text = stringResource(id = R.string.mainMenu),
                     style = Typography.headlineMedium.copy(
                         fontFamily = FontFamily(Font(R.font.cmunbx)),
-                        color = MaterialTheme.colorScheme.inversePrimary,
-                        fontSize = 20.sp
+                        color = MaterialTheme.colorScheme.surface,
+                        fontSize = 18.sp
                     )
                 )
             }
         }
+
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = stringResource(id = R.string.Name),
@@ -81,59 +120,72 @@ fun MainScreen(
             textAlign = TextAlign.Center
         )
 
-        Text(
-            text = stringResource(id = R.string.difficultyHint),
-            style = Typography.bodyLarge.copy(
-                fontFamily = FontFamily(Font(R.font.cmunrm)),
-                color = MaterialTheme.colorScheme.primary,
-                fontSize = 18.sp
-            ),
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 40.dp),
-            textAlign = TextAlign.Center
-        )
-
-        Slider (
-            value = difficultyState.floatValue,
-            onValueChange = { new ->
-                difficultyState.floatValue = new
-                viewModel.onDifficultyChange(new.toInt())
-            },
-            valueRange = 1f..3f,
-            steps = 1,
-            modifier = Modifier
-                .width(215.dp)
-                .height(40.dp)
-                .padding(top = 10.dp)
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
+                .padding(vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stringResource(id = R.string.easyLevel),
-                fontSize = 18.sp,
-                fontFamily = FontFamily(Font(R.font.cmunrm)),
-                color = MaterialTheme.colorScheme.primary
+                text = stringResource(id = R.string.difficultyHint),
+                style = Typography.bodyLarge.copy(
+                    fontFamily = FontFamily(Font(R.font.cmunrm)),
+                    color = MaterialTheme.colorScheme.primary,
+                    fontSize = 18.sp
+                ),
+                modifier = Modifier
+                    .wrapContentWidth(),
+                textAlign = TextAlign.Center
+            )
+            IconButton(onClick = { showInfo = true }) {
+                Icon(Icons.Default.Info, contentDescription = "Что такое уровень?")
+            }
+        }
+
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Slider (
+                value = difficultyState.floatValue,
+                onValueChange = { new ->
+                    difficultyState.floatValue = new
+                    viewModel.onDifficultyChange(new.toInt())
+                },
+                valueRange = 1f..3f,
+                steps = 1,
+                modifier = Modifier
+                    .width(225.dp)
+                    .height(40.dp)
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Row(
+                modifier = Modifier.width(290.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(R.string.easyLevel),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(R.font.cmunrm)),
+                    color = MaterialTheme.colorScheme.primary
                 )
-            Spacer(modifier = Modifier.width(35.dp))
-            Text(
-                text = stringResource(id = R.string.midLevel),
-                fontSize = 18.sp,
-                fontFamily = FontFamily(Font(R.font.cmunrm)),
-                color = MaterialTheme.colorScheme.primary
+                Text(
+                    text = stringResource(R.string.midLevel),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(R.font.cmunrm)),
+                    color = MaterialTheme.colorScheme.primary
                 )
-            Spacer(modifier = Modifier.width(35.dp))
-            Text(
-                text = stringResource(id = R.string.hardLevel),
-                fontSize = 18.sp,
-                fontFamily = FontFamily(Font(R.font.cmunrm)),
-                color = MaterialTheme.colorScheme.primary
+                Text(
+                    text = stringResource(R.string.hardLevel),
+                    fontSize = 18.sp,
+                    fontFamily = FontFamily(Font(R.font.cmunrm)),
+                    color = MaterialTheme.colorScheme.primary
                 )
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -186,14 +238,16 @@ fun MainScreen(
             Spacer(modifier = Modifier.width(16.dp))
 
             Button(
-                modifier = Modifier
-                    .height(56.dp),
+                modifier = Modifier.height(56.dp),
                 onClick = { viewModel.onCheck() },
-                enabled = !isChecking
+                enabled = !isChecking,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                )
             ) {
                 Text(
                     text = stringResource(R.string.equals),
-                    color = MaterialTheme.colorScheme.inversePrimary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontFamily = FontFamily(Font(R.font.cmunbx)),
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 24.sp
@@ -235,8 +289,9 @@ fun MainScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.reCnt),
-                        color = MaterialTheme.colorScheme.inversePrimary,
+                        color = MaterialTheme.colorScheme.surface,
                         fontSize = 22.sp,
+                        fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -244,7 +299,7 @@ fun MainScreen(
             }
         }
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(20.dp))
 
         NumberKeyboard(
             onKeyPress = { viewModel.onKeyboardInput(it) }
