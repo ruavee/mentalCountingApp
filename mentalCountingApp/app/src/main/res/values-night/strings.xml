@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AppLongName">Тренировка устного счёта</string>
+    <string name="chooseMode">Выберите режим</string>
+    <string name="EndlessModeName">Бесконечные примеры</string>
+    <string name="EndlessModeHint">Решайте без ограничений</string>
+    <string name="TimerModeName">На время</string>
+    <string name="TimerModeHint">За отведённое время</string>
+    <string name="EquationsModeName">Линейные уравнения</string>
+    <string name="EquationsModeHint">x + 5 = 2x – 3</string>
+</resources>
