@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt") version "2.1.20"
     id("com.google.dagger.hilt.android")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -50,6 +51,8 @@ dependencies {
     debugImplementation(libs.ui.tooling)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.material.icons.extended)
 
     // Сoroutines
     implementation(libs.kotlinx.coroutines.core)
@@ -79,4 +82,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
+    jvmTarget = "1.8"
 }

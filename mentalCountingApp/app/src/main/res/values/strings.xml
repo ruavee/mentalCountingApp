@@ -15,11 +15,19 @@
     <string name="_7">7</string>
     <string name="_8">8</string>
     <string name="_9">9</string>
-    <string name="switchTimerMode">На время</string>
+    <string name="mainMenu">Назад</string>
     <string name="minus">–</string>
     <string name="deleteSymbol">⌫</string>
     <string name="reCnt">↺</string>
     <string name="inputText">Ваш ответ</string>
     <string name="equals">=</string>
+    <string name="AppLongName">Тренировка устного счёта</string>
+    <string name="chooseMode">Выберите режим</string>
+    <string name="EndlessModeName">Бесконечные примеры</string>
+    <string name="EndlessModeHint">Решайте без ограничений</string>
+    <string name="TimerModeName">На время</string>
+    <string name="TimerModeHint">За отведённое время</string>
+    <string name="EquationsModeName">Линейные уравнения</string>
+    <string name="EquationsModeHint">x + 5 = 2x – 3</string>
 
 </resources>

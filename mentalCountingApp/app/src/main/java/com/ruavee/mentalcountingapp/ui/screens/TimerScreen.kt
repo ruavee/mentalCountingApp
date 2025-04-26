@@ -2,6 +2,7 @@ package com.ruavee.mentalcountingapp.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +30,7 @@ fun TimerScreen(
         ) {
             Text(
                 text = "Здесь будет логика режима с таймером",
+                color = MaterialTheme.colorScheme.primary,
                 fontSize = 18.sp
             )
             Spacer(modifier = Modifier.height(24.dp))
