@@ -237,6 +237,7 @@ fun MainScreen(
                         text = stringResource(id = R.string.reCnt),
                         color = MaterialTheme.colorScheme.inversePrimary,
                         fontSize = 22.sp,
+                        fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
                     )
