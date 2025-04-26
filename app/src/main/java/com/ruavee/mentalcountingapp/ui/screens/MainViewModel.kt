@@ -50,7 +50,7 @@ class MainViewModel @Inject constructor(
             resultMessage = "Верно!"
             correctCount++
         } else {
-            resultMessage = "Неверно! Ответ: ${expected.toInt()}"
+            resultMessage = "Неверно! Ответ: ${expected.toInt().toString().replace('-', '–')}"
         }
 
         viewModelScope.launch {
