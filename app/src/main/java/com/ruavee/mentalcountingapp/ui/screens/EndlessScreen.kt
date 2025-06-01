@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -50,6 +51,7 @@ fun MainScreen(
 
     if (showInfo) {
         AlertDialog(
+            modifier = Modifier.testTag("infoDialog"),
             onDismissRequest = { showInfo = false },
             confirmButton = {
                 TextButton(onClick = { showInfo = false }) {
@@ -162,6 +164,7 @@ fun MainScreen(
                 modifier = Modifier
                     .width(225.dp)
                     .height(25.dp)
+                    .testTag("slider")
             )
 
             Spacer(modifier = Modifier.height(4.dp))

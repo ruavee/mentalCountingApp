@@ -40,6 +40,17 @@ android {
     buildFeatures {
         compose = true
     }
+    packagingOptions {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE",
+                "META-INF/NOTICE.md",
+                "META-INF/NOTICE",
+                "META-INF/LICENSE-notice.md"  // вот тут добавляем твой файл
+            )
+        }
+    }
 }
 
 dependencies {
@@ -82,6 +93,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Test
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
+    androidTestImplementation(libs.mockk.android)
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {

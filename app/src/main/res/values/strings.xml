@@ -28,6 +28,6 @@
     <string name="TimerModeName">На время</string>
     <string name="TimerModeHint">За отведённое время</string>
     <string name="EquationsModeName">Линейные уравнения</string>
-    <string name="EquationsModeHint">x + 5 = 2x – 3</string>
+    <string name="EquationsModeHint" translatable="false">x + 5 = 2x – 3</string>
 
 </resources>
