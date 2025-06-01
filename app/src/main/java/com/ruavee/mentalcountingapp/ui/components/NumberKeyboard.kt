@@ -36,14 +36,13 @@ fun NumberKeyboard(
             ) {
                 row.forEach { key ->
                     Button(
-                        onClick = { onKeyPress(key) },
+                        onClick = { onKeyPress(key.replace("⌫", "DEL")) },
                         shape = RoundedCornerShape(15.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.surfaceVariant
                         ),
                         modifier = Modifier
                             .weight(1f)
-                            .height(60.dp)
                     ) {
                         Text(
                             text = key,

@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -50,6 +51,7 @@ fun MainScreen(
 
     if (showInfo) {
         AlertDialog(
+            modifier = Modifier.testTag("infoDialog"),
             onDismissRequest = { showInfo = false },
             confirmButton = {
                 TextButton(onClick = { showInfo = false }) {
@@ -101,7 +103,7 @@ fun MainScreen(
                     style = Typography.headlineMedium.copy(
                         fontFamily = FontFamily(Font(R.font.cmunbx)),
                         color = MaterialTheme.colorScheme.surface,
-                        fontSize = 18.sp
+                        fontSize = 16.sp
                     )
                 )
             }
@@ -120,7 +122,7 @@ fun MainScreen(
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Row (
             modifier = Modifier
@@ -134,13 +136,16 @@ fun MainScreen(
                 style = Typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.cmunrm)),
                     color = MaterialTheme.colorScheme.primary,
-                    fontSize = 18.sp
+                    fontSize = 14.sp
                 ),
-                modifier = Modifier
-                    .wrapContentWidth(),
+                modifier = Modifier.wrapContentWidth(),
                 textAlign = TextAlign.Center
             )
-            IconButton(onClick = { showInfo = true }) {
+            IconButton(
+                onClick = {
+                    showInfo = true
+                }
+            ) {
                 Icon(Icons.Default.Info, contentDescription = "Что такое уровень?")
             }
         }
@@ -158,30 +163,31 @@ fun MainScreen(
                 steps = 1,
                 modifier = Modifier
                     .width(225.dp)
-                    .height(40.dp)
+                    .height(25.dp)
+                    .testTag("slider")
             )
 
             Spacer(modifier = Modifier.height(4.dp))
 
             Row(
-                modifier = Modifier.width(290.dp),
+                modifier = Modifier.width(270.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = stringResource(R.string.easyLevel),
-                    fontSize = 18.sp,
+                    fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.cmunrm)),
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = stringResource(R.string.midLevel),
-                    fontSize = 18.sp,
+                    fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.cmunrm)),
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = stringResource(R.string.hardLevel),
-                    fontSize = 18.sp,
+                    fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.cmunrm)),
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -266,7 +272,7 @@ fun MainScreen(
                 text = "Верно: $count",
                 fontFamily = FontFamily(Font(R.font.cmunrm)),
                 color = MaterialTheme.colorScheme.primary,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
             )
@@ -276,8 +282,8 @@ fun MainScreen(
             Button(
                 onClick = { viewModel.correctCount = 0 },
                 modifier = Modifier
-                    .width(50.dp)
-                    .height(50.dp)
+                    .width(35.dp)
+                    .height(35.dp)
                     .align(Alignment.CenterVertically),
                 contentPadding = PaddingValues(all = 0.dp),
             ) {
@@ -290,7 +296,7 @@ fun MainScreen(
                     Text(
                         text = stringResource(id = R.string.reCnt),
                         color = MaterialTheme.colorScheme.surface,
-                        fontSize = 22.sp,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.ExtraBold,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()

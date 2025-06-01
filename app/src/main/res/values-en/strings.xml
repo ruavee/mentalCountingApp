@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mentalCountingApp</string>
+    <string name="Name">Mental Counting</string>
+    <string name="difficultyHint">Choose difficulty</string>
+    <string name="easyLevel">Easy</string>
+    <string name="midLevel">Middle</string>
+    <string name="hardLevel">Hard</string>
+    <string name="mainMenu">Back</string>
+    <string name="inputText">Your answer</string>
+    <string name="AppLongName">Training Mental Couting</string>
+    <string name="chooseMode">Choose Mode</string>
+    <string name="EndlessModeName">Endless Mode</string>
+    <string name="EndlessModeHint">Solve without limits</string>
+    <string name="TimerModeName">Timer Mode</string>
+    <string name="TimerModeHint">Solve more on time</string>
+    <string name="EquationsModeName">Linear equations</string>
+</resources>

@@ -5,22 +5,22 @@
     <string name="easyLevel">Легкий</string>
     <string name="midLevel">Средний</string>
     <string name="hardLevel">Трудный</string>
-    <string name="_0">0</string>
-    <string name="_1">1</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
-    <string name="_5">5</string>
-    <string name="_6">6</string>
-    <string name="_7">7</string>
-    <string name="_8">8</string>
-    <string name="_9">9</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="_3" translatable="false">3</string>
+    <string name="_4" translatable="false">4</string>
+    <string name="_5" translatable="false">5</string>
+    <string name="_6" translatable="false">6</string>
+    <string name="_7" translatable="false">7</string>
+    <string name="_8" translatable="false">8</string>
+    <string name="_9" translatable="false">9</string>
     <string name="mainMenu">Назад</string>
-    <string name="minus">–</string>
-    <string name="deleteSymbol">⌫</string>
-    <string name="reCnt">↺</string>
+    <string name="minus" translatable="false">–</string>
+    <string name="deleteSymbol" translatable="false">⌫</string>
+    <string name="reCnt" translatable="false">↺</string>
     <string name="inputText">Ваш ответ</string>
-    <string name="equals">=</string>
+    <string name="equals" translatable="false">=</string>
     <string name="AppLongName">Тренировка устного счёта</string>
     <string name="chooseMode">Выберите режим</string>
     <string name="EndlessModeName">Бесконечные примеры</string>
@@ -28,6 +28,6 @@
     <string name="TimerModeName">На время</string>
     <string name="TimerModeHint">За отведённое время</string>
     <string name="EquationsModeName">Линейные уравнения</string>
-    <string name="EquationsModeHint">x + 5 = 2x – 3</string>
+    <string name="EquationsModeHint" translatable="false">x + 5 = 2x – 3</string>
 
 </resources>
