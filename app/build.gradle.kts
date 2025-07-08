@@ -47,7 +47,7 @@ android {
                 "META-INF/LICENSE",
                 "META-INF/NOTICE.md",
                 "META-INF/NOTICE",
-                "META-INF/LICENSE-notice.md"  // вот тут добавляем твой файл
+                "META-INF/LICENSE-notice.md"
             )
         }
     }
@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.material3)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.junit.ktx)
     debugImplementation(libs.ui.tooling)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
